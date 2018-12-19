@@ -35,8 +35,6 @@ class ViewController: UIViewController {
     MoviesAPIClient.searchMovies(keyword: keyword) { (error, movie) in
         if let error = error {
             print(error.errorShowed())
-        }else if let movie = movie {
-            //self.movie = movie
         }
     }
 }
@@ -48,6 +46,7 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell", for: indexPath)
         let theCell = movie[indexPath.row]
         cell.textLabel?.text = theCell.original_title
+        
         return cell
     }
 }

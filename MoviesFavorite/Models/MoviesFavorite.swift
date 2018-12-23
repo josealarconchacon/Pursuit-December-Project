@@ -7,15 +7,14 @@
 //
 
 import Foundation
-struct MovieFavoriteData: Codable {
-    let results: [MovieFavorite]
+import UIKit
+
+struct Movie: Codable {
+    var title: String
+    var overview: String
 }
-struct MovieFavorite: Codable {
-    let vote_count: Int
-    let title: String
-    let poster_path: String
-    let original_title: String
-   
+struct Movies: Codable {
+    var results: [Movie]
 }
 
 

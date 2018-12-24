@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		671F23DD21D07D3C00C0CBAF /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671F23DC21D07D3C00C0CBAF /* MovieTableViewCell.swift */; };
+		671F23E121D08C0300C0CBAF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671F23E021D08C0300C0CBAF /* DetailViewController.swift */; };
 		67200A5721C4A4B8007200A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67200A5621C4A4B8007200A0 /* AppDelegate.swift */; };
 		67200A5921C4A4B8007200A0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67200A5821C4A4B8007200A0 /* TableViewController.swift */; };
 		67200A5C21C4A4B8007200A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67200A5A21C4A4B8007200A0 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		671F23DC21D07D3C00C0CBAF /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		671F23E021D08C0300C0CBAF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		67200A5321C4A4B8007200A0 /* MoviesFavorite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesFavorite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67200A5621C4A4B8007200A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67200A5821C4A4B8007200A0 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				67200A5821C4A4B8007200A0 /* TableViewController.swift */,
+				671F23DC21D07D3C00C0CBAF /* MovieTableViewCell.swift */,
+				671F23E021D08C0300C0CBAF /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +170,8 @@
 			files = (
 				67200A5921C4A4B8007200A0 /* TableViewController.swift in Sources */,
 				67200A6921C4A517007200A0 /* MoviesFavorite.swift in Sources */,
+				671F23E121D08C0300C0CBAF /* DetailViewController.swift in Sources */,
+				671F23DD21D07D3C00C0CBAF /* MovieTableViewCell.swift in Sources */,
 				67200A5721C4A4B8007200A0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

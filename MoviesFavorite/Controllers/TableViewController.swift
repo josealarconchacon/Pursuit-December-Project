@@ -50,7 +50,7 @@ class TableViewController: UITableViewController {
 //        tableView.dataSource = self
 //        self.tableView.reloadData()
         
-        let urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=a89086b4927405c65e442226c571beb6&language=en-US&page=1"
+        let urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=&language=en-US&page=1"
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 print("attempting to parse json")
@@ -121,3 +121,41 @@ class TableViewController: UITableViewController {
         return 1
     }
 }
+//    extension CGImage {
+//        var imageIsDark: Bool {
+//            get {
+//                guard let imageData = self.dataProvider?.data else { return false}
+//                guard let pt = CFDataGetBytePtr(imageData)  else { return false}
+//                let theLength = CFDataGetLength(imageData)
+//                let toSet = Int(Double(self.width * self.height) * 0.45)
+//                var darkPixels = 0
+//                for i in stride(from: 0, to: theLength, by: 4) {
+//                    let r = pt[i]
+//                    let g = pt[i + 1]
+//                    let b = pt[i + 2]
+//                    let luminance = (0.299 * Double(r) + 0.587 * Double(g) + 0.114 * Double(b))
+//                    if luminance < 150 {
+//                        darkPixels += 1
+//                        if darkPixels > toSet {
+//                            return true
+//                        }
+//                    }
+//                }
+//                return false
+//            }
+//        }
+//}
+//
+//
+//extension UIImage {
+//    var isDark: Bool {
+//        get {
+//            return self.cgImage?.isMask ?? false
+//        }
+//    }
+//}
+
+
+
+
+

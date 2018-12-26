@@ -13,7 +13,7 @@ class TableViewController: UITableViewController {
    // @IBOutlet var tableView: UITableView!
     
     
-    let movieAPI = URL.init(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a89086b4927405c65e442226c571beb6&language=en-US&page=1")
+    let movieAPI = URL.init(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=&language=en-US&page=1")
     let imagesBaseUrlString = "https://image.tmdb.org/t/p/w500"
     
     

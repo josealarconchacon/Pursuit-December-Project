@@ -16,6 +16,7 @@ struct Movie: Codable {
     var backdrop_path: String
     var poster_path: String
     var release_date: String
+    var id: Int
 }
 struct Movies: Codable {
     var results: [Movie]

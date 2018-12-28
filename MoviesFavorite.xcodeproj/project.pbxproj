@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		671F23DD21D07D3C00C0CBAF /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671F23DC21D07D3C00C0CBAF /* MovieTableViewCell.swift */; };
 		671F23E121D08C0300C0CBAF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671F23E021D08C0300C0CBAF /* DetailViewController.swift */; };
+		671F240C21D58AEF00C0CBAF /* SecondTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671F240B21D58AEF00C0CBAF /* SecondTableViewController.swift */; };
+		671F240F21D59DE300C0CBAF /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671F240E21D59DE300C0CBAF /* SecondTableViewCell.swift */; };
 		67200A5721C4A4B8007200A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67200A5621C4A4B8007200A0 /* AppDelegate.swift */; };
 		67200A5921C4A4B8007200A0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67200A5821C4A4B8007200A0 /* TableViewController.swift */; };
 		67200A5C21C4A4B8007200A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67200A5A21C4A4B8007200A0 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		671F23DC21D07D3C00C0CBAF /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		671F23E021D08C0300C0CBAF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		671F240B21D58AEF00C0CBAF /* SecondTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewController.swift; sourceTree = "<group>"; };
+		671F240E21D59DE300C0CBAF /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
 		67200A5321C4A4B8007200A0 /* MoviesFavorite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesFavorite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67200A5621C4A4B8007200A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67200A5821C4A4B8007200A0 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		671F240D21D59D9C00C0CBAF /* Cell File */ = {
+			isa = PBXGroup;
+			children = (
+				671F23DC21D07D3C00C0CBAF /* MovieTableViewCell.swift */,
+				671F240E21D59DE300C0CBAF /* SecondTableViewCell.swift */,
+			);
+			path = "Cell File";
+			sourceTree = "<group>";
+		};
 		67200A4A21C4A4B8007200A0 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +77,7 @@
 				67ACAE2221C590F3007C8C77 /* Controllers */,
 				67ACAE2321C59102007C8C77 /* Models */,
 				67200A5A21C4A4B8007200A0 /* Main.storyboard */,
+				671F240D21D59D9C00C0CBAF /* Cell File */,
 				67200A6221C4A4BA007200A0 /* Info.plist */,
 			);
 			path = MoviesFavorite;
@@ -73,8 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				67200A5821C4A4B8007200A0 /* TableViewController.swift */,
-				671F23DC21D07D3C00C0CBAF /* MovieTableViewCell.swift */,
 				671F23E021D08C0300C0CBAF /* DetailViewController.swift */,
+				671F240B21D58AEF00C0CBAF /* SecondTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -169,9 +183,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				67200A5921C4A4B8007200A0 /* TableViewController.swift in Sources */,
+				671F240C21D58AEF00C0CBAF /* SecondTableViewController.swift in Sources */,
 				67200A6921C4A517007200A0 /* MoviesFavorite.swift in Sources */,
 				671F23E121D08C0300C0CBAF /* DetailViewController.swift in Sources */,
 				671F23DD21D07D3C00C0CBAF /* MovieTableViewCell.swift in Sources */,
+				671F240F21D59DE300C0CBAF /* SecondTableViewCell.swift in Sources */,
 				67200A5721C4A4B8007200A0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

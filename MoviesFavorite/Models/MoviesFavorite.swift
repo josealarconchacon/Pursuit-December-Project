@@ -9,7 +9,7 @@
 import Foundation
 //import UIKit
 
-struct Movie: Codable {
+struct Movie: Codable, Equatable {
     var title: String
     var overview: String
     var vote_average: Double

@@ -12,18 +12,20 @@ class SecondTableViewController: UITableViewController {
     
     @IBOutlet var setTableView: UITableView!
    
-    
     var results = [Movie]()
     var movie: Movie!
     var id: Int = 0
+    
+    let imageBase = "https://image.tmdb.org/t/p/w500"
     let api_key = ""
     let movieApiBeginning =  "https://api.themoviedb.org/3/movie/"
-    let imageBase = "https://image.tmdb.org/t/p/w500"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //movieImage()
         print(id)
+        if results.count == 0 {
+            self.title = "No similar movies to show"
+        }
         
         let idString = String(id)
         let movieAPIString = movieApiBeginning + idString + "/similar?api_key=" + api_key + "&language=en-US&page=1"

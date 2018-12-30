@@ -8,16 +8,57 @@
 
 import UIKit
 
+var nowPlaying = [Movie]()
+var favoriteMoviesArray = [Movie]()
+var moviesYouMightLike = [Movie]()
+
 class TableViewController: UITableViewController {
-   // @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    //The view will switch between 'main' (now playing), 'similar' (to a particular movie), 'favorites', 'similar movies' (similar movies to the selected movie), and 'movies you might like'
+    var viewName = "main"
+
+    @IBOutlet weak var favorites: UIBarButtonItem!
+    @IBAction func favoriteMovies(_ sender: UIBarButtonItem) {
+        //Change to favorites view if current view is main
+        if viewName == "main" {
+            resultsPlaceholder = results
+            results = favoriteMoviesArray
+            tableView.reloadData()
+            favorites.title = "All Movies"
+            self.title = "Favorite Movies"
+            viewName = "favorites"
+        //Change to main view if current view is favorites
+        } else if viewName == "favorites" {
+            results = resultsPlaceholder
+            tableView.reloadData()
+            favorites.title = "Favorites"
+            self.title = "Now Playing"
+            viewName = "main"
+        } else if viewName == "similar" {
+            results = favoriteMoviesArray
+            tableView.reloadData()
+            favorites.title = "All Movies"
+            self.title = "Favorite Movies"
+            viewName = "favorites"
+        }
+    }
     
+    //1
+    let api_key = ""
+    let movieApiBeginning =  "https://api.themoviedb.org/3/movie/"
     
-    let movieAPI = URL.init(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a89086b4927405c65e442226c571beb6&language=en-US&page=1")
+    let movieAPI = URL.init(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=&language=en-US&page=1")
+    
     let imagesBaseUrlString = "https://image.tmdb.org/t/p/w500"
     
     var results = [Movie]()
-    //1 (Array of movies filtered by search term)
+    
+    //2
+    var similarMovies = [Movie]()
+    var movie: Movie!
+    var id: Int = 0
+    
+    var resultsPlaceholder = [Movie]()
+    // (Array of movies filtered by search term)
     var filteredMovies = [Movie]()
     var sortWhenNotSearching = [Movie]()
     var sortWhenSearching = [Movie]()
@@ -42,30 +83,32 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("the view loaded")
+        self.title = "Now Playing"
+        
         // 4
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search for a movie"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
-
-          tableView.dataSource = self
-          self.tableView.reloadData()
         
-        let urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=a89086b4927405c65e442226c571beb6&language=en-US&page=1"
-        if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                print("attempting to parse json")
-                parseJson(json: data)
-            }
+        if nowPlaying.count == 0 && viewName == "main" {
+            getNowPlaying()
+        } else if viewName == "similar" {
+            self.title = "Similar movies"
+            getSimilarMovies()
         }
+        
+        tableView.dataSource = self
+        self.tableView.reloadData()
+
     }
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         let detailViewController = segue.destination as? DetailViewController
         let indexPath = tableView.indexPathForSelectedRow
-        let selectedMovie = results[indexPath!.row]
+//        let selectedMovie = results[indexPath!.row]
         let movie = filter() ? filteredMovies[indexPath!.row]: results[indexPath!.row]
         detailViewController?.selectedMovie = movie
     }
@@ -73,11 +116,38 @@ class TableViewController: UITableViewController {
     func parseJson(json: Data) {
         let decoder = JSONDecoder()
     
-    if let jsonMovie = try? decoder.decode(Movies.self, from: json) {
-        results = jsonMovie.results
-        print(results)
+        if let jsonMovie = try? decoder.decode(Movies.self, from: json) {
+            if viewName == "main" {
+                nowPlaying = jsonMovie.results
+                results = nowPlaying
+            } else if viewName == "similar" {
+                similarMovies = jsonMovie.results
+                results = similarMovies
+            }
+//        print(results)
         print("parsing movies data!")
        }
+    }
+    
+    func getNowPlaying() {
+        let urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=&language=en-US&page=1"
+        if let url = URL(string: urlString) {
+            if let data = try? Data(contentsOf: url) {
+                print("attempting to parse json for movies now playing")
+                parseJson(json: data)
+            }
+        }
+    }
+    
+    func getSimilarMovies() {
+        let idString = String(id)
+        let movieAPIString = movieApiBeginning + idString + "/similar?api_key=" + api_key + "&language=en-US&page=1"
+        if let similarMovieAPI = URL(string: movieAPIString) {
+            if let data = try? Data(contentsOf: similarMovieAPI) {
+                print("attempting to parse json for similar movies")
+                parseJson(json: data)
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,16 +198,7 @@ class TableViewController: UITableViewController {
         return 1
     }
 }
-//extension TableViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchBar.resignFirstResponder()
-//        guard let seachText = searchBar.text,
-//        !seachText.isEmpty,
-//            let searchTextEncode = seachText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-//                return
-//        }
-//    }
-//}
+
 extension TableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)

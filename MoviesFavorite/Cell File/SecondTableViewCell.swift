@@ -13,6 +13,7 @@ class SecondTableViewCell: UITableViewCell {
     @IBOutlet weak var titleName: UILabel!
     
     var similaerMovies = [Movie]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

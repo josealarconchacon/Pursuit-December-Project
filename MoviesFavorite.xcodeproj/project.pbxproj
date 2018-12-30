@@ -87,8 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				67200A5821C4A4B8007200A0 /* TableViewController.swift */,
-				671F23E021D08C0300C0CBAF /* DetailViewController.swift */,
 				671F240B21D58AEF00C0CBAF /* SecondTableViewController.swift */,
+				671F23E021D08C0300C0CBAF /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

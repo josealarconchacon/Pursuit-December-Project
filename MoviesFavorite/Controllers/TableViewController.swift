@@ -43,10 +43,10 @@ class TableViewController: UITableViewController {
     }
     
     //1
-    let api_key = ""
+    let api_key = "a89086b4927405c65e442226c571beb6"
     let movieApiBeginning =  "https://api.themoviedb.org/3/movie/"
     
-    let movieAPI = URL.init(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=&language=en-US&page=1")
+    let movieAPI = URL.init(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a89086b4927405c65e442226c571beb6&language=en-US&page=1")
     
     let imagesBaseUrlString = "https://image.tmdb.org/t/p/w500"
     
@@ -95,8 +95,12 @@ class TableViewController: UITableViewController {
         if nowPlaying.count == 0 && viewName == "main" {
             getNowPlaying()
         } else if viewName == "similar" {
-            self.title = "Similar movies"
             getSimilarMovies()
+            if results.count == 0 {
+                self.title = "No similar movies"
+            } else {
+                self.title = "Similar movies"
+            }
         }
         
         tableView.dataSource = self
@@ -108,7 +112,6 @@ class TableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
         let detailViewController = segue.destination as? DetailViewController
         let indexPath = tableView.indexPathForSelectedRow
-//        let selectedMovie = results[indexPath!.row]
         let movie = filter() ? filteredMovies[indexPath!.row]: results[indexPath!.row]
         detailViewController?.selectedMovie = movie
     }
@@ -124,16 +127,15 @@ class TableViewController: UITableViewController {
                 similarMovies = jsonMovie.results
                 results = similarMovies
             }
-//        print(results)
         print("parsing movies data!")
        }
     }
     
     func getNowPlaying() {
-        let urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=&language=en-US&page=1"
+        let urlString = "https://api.themoviedb.org/3/movie/now_playing?api_key=a89086b4927405c65e442226c571beb6&language=en-US&page=1"
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
-                print("attempting to parse json for movies now playing")
+                print("d to parse json for movies now playing")
                 parseJson(json: data)
             }
         }
@@ -165,7 +167,6 @@ class TableViewController: UITableViewController {
         //3
         sortWhenSearching  = filteredMovies.sorted(by: { $0.title < $1.title})
     
-//        var movieToSet = sortWhenSearching[indexPath.row]
         var movieToSet: Movie
         
         if filter() {
@@ -177,10 +178,8 @@ class TableViewController: UITableViewController {
         let cellIdentifier = "movieCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MovieTableViewCell
         let resulToSet = results[indexPath.row]
-//        cell?.movieNameLabel.text = resulToSet.title
         cell?.movieNameLabel.text = movieToSet.title
-    
-//        let backdropUrlString = imagesBaseUrlString + resulToSet.backdrop_path
+
         let backdropUrlString = imagesBaseUrlString + movieToSet.backdrop_path
         if let bsckdropURL = URL(string: backdropUrlString) {
             DispatchQueue.global().async {

@@ -17,7 +17,7 @@ class SecondTableViewController: UITableViewController {
     var id: Int = 0
     
     let imageBase = "https://image.tmdb.org/t/p/w500"
-    let api_key = ""
+    let api_key = "a89086b4927405c65e442226c571beb6"
     let movieApiBeginning =  "https://api.themoviedb.org/3/movie/"
 
     override func viewDidLoad() {
@@ -61,7 +61,6 @@ class SecondTableViewController: UITableViewController {
              cell?.titleName.text = cellResult.title
         }
 
-       // private func movieImage() {
             let backdropString = imageBase + cellResult.backdrop_path
             if let url = URL(string: backdropString) {
                 DispatchQueue.global().async {
@@ -72,7 +71,6 @@ class SecondTableViewController: UITableViewController {
                     }
                 }
             }
-       // }
        return cell!
     }
 }

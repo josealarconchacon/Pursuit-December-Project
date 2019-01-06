@@ -38,6 +38,8 @@ class DetailViewController: UIViewController {
         } else if segue.identifier == "showSimilarMovieTable" {
             let similarMovieTableView = segue.destination as? TableViewController
             similarMovieTableView!.id = selectedMovie!.id
+            similarMovieTableView?.suggested.title = "Now Playing"
+            similarMovieTableView?.favorites.isEnabled = false
             print("The movie ID is \(String(selectedMovie!.id))")
             similarMovieTableView?.viewName = "similar"
         }

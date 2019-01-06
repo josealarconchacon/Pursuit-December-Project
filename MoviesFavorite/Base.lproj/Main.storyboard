@@ -35,7 +35,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpD-3a-K3s">
-                                            <rect key="frame" x="36" y="150" width="303.5" height="52.5"/>
+                                            <rect key="frame" x="36" y="150" width="303.5" height="53"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,6 +66,11 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" id="OLN-b4-MsS">
+                        <barButtonItem key="leftBarButtonItem" title="Suggested" id="AfM-Um-BEL">
+                            <connections>
+                                <action selector="suggestedMoviesAction:" destination="5x2-N2-30p" id="mXi-B0-LmQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Favorites" id="sUT-GC-RpF">
                             <connections>
                                 <action selector="favoriteMovies:" destination="5x2-N2-30p" id="hAm-Yd-aXO"/>
@@ -74,6 +79,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="favorites" destination="sUT-GC-RpF" id="DCd-Xr-smt"/>
+                        <outlet property="suggested" destination="AfM-Um-BEL" id="aK1-85-s3w"/>
                         <outlet property="tableView" destination="N9B-sC-dgO" id="Rqc-vo-8LB"/>
                     </connections>
                 </tableViewController>
@@ -90,10 +96,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gdf-Xv-x5O">
-                                <rect key="frame" x="0.0" y="20" width="375" height="420.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="392"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lNv-Lv-MsY">
-                                <rect key="frame" x="8" y="448.5" width="44" height="44"/>
+                                <rect key="frame" x="8" y="464" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="1wZ-gv-2tN"/>
                                     <constraint firstAttribute="width" constant="44" id="VIv-H6-Sex"/>
@@ -105,7 +111,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDY-DR-67L">
-                                <rect key="frame" x="60" y="448.5" width="44" height="44"/>
+                                <rect key="frame" x="60" y="464" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="E0J-8r-Cml"/>
                                     <constraint firstAttribute="width" constant="44" id="PPW-cT-1yw"/>
@@ -116,7 +122,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👎🏽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6Q-UL-50P">
-                                <rect key="frame" x="16" y="161.5" width="343" height="138"/>
+                                <rect key="frame" x="16" y="191" width="343" height="138"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="138" id="OaG-Zu-BSC"/>
                                     <constraint firstAttribute="width" constant="343" id="wj2-Wm-2o2"/>
@@ -126,7 +132,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8X-O8-ZAe">
-                                <rect key="frame" x="0.0" y="500.5" width="375" height="166.5"/>
+                                <rect key="frame" x="0.0" y="516" width="375" height="151"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
@@ -240,6 +246,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nrn-ey-HVV"/>
+        <segue reference="vTI-mK-Gis"/>
     </inferredMetricsTieBreakers>
 </document>

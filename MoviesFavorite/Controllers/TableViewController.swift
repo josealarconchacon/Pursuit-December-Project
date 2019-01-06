@@ -13,9 +13,10 @@ var favoriteMoviesArray = [Movie]()
 var moviesYouMightLike = [Movie]()
 
 class TableViewController: UITableViewController {
-    //The view will switch between 'main' (now playing), 'similar' (to a particular movie), 'favorites', 'similar movies' (similar movies to the selected movie), and 'movies you might like'
+    //The view will switch between 'main' (now playing), 'similar' (to a particular movie), 'favorites', and 'suggested'
     var viewName = "main"
 
+    @IBOutlet weak var suggested: UIBarButtonItem!
     @IBOutlet weak var favorites: UIBarButtonItem!
     @IBAction func favoriteMovies(_ sender: UIBarButtonItem) {
         //Change to favorites view if current view is main
@@ -23,9 +24,10 @@ class TableViewController: UITableViewController {
             resultsPlaceholder = results
             results = favoriteMoviesArray
             tableView.reloadData()
-            favorites.title = "All Movies"
+            favorites.title = "Now Playing"
             self.title = "Favorite Movies"
             viewName = "favorites"
+            suggested.isEnabled = false
         //Change to main view if current view is favorites
         } else if viewName == "favorites" {
             results = resultsPlaceholder
@@ -33,12 +35,40 @@ class TableViewController: UITableViewController {
             favorites.title = "Favorites"
             self.title = "Now Playing"
             viewName = "main"
+            suggested.isEnabled = true
         } else if viewName == "similar" {
-            results = favoriteMoviesArray
+            results = nowPlaying
             tableView.reloadData()
-            favorites.title = "All Movies"
-            self.title = "Favorite Movies"
-            viewName = "favorites"
+            favorites.title = "Favorites"
+            self.title = "Now Playing"
+            viewName = "main"
+        } else if viewName == "suggested" {
+            
+        }
+    }
+    @IBAction func suggestedMoviesAction(_ sender: Any) {
+        if viewName == "main" {
+            resultsPlaceholder = results
+            results = moviesYouMightLike
+            tableView.reloadData()
+            suggested.title = "Now Playing"
+            self.title = "Suggested Movies"
+            viewName = "similar"
+            favorites.isEnabled = false
+            //Change to main view if current view is favorites
+        } else if viewName == "favorites" {
+            results = resultsPlaceholder
+            tableView.reloadData()
+            suggested.title = "Suggested"
+            self.title = "Suggested Movies"
+            viewName = "main"
+        } else if viewName == "similar" {
+            results = nowPlaying
+            tableView.reloadData()
+            suggested.title = "Suggested"
+            self.title = "Now Playing"
+            viewName = "main"
+            favorites.isEnabled = true
         }
     }
     
@@ -85,6 +115,8 @@ class TableViewController: UITableViewController {
         print("the view loaded")
         self.title = "Now Playing"
         
+        
+        
         // 4
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
@@ -126,6 +158,11 @@ class TableViewController: UITableViewController {
             } else if viewName == "similar" {
                 similarMovies = jsonMovie.results
                 results = similarMovies
+                for item in similarMovies {
+                    if moviesYouMightLike.contains(item) == false {
+                        moviesYouMightLike.append(item)
+                    }
+                }
             }
         print("parsing movies data!")
        }
